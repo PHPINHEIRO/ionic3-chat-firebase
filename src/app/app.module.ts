@@ -12,6 +12,8 @@ import { FirebaseAppConfig, AngularFireModule } from 'angularfire2';
 import { UserService } from '../providers/user/user.service';
 import { AngularFireAuthModule } from 'angularfire2/auth';
 import { AngularFireDatabaseModule } from 'angularfire2/database';
+import { AuthProvider } from '../providers/auth/auth';
+import { AuthService } from '../providers/authservice.';
  
 
 
@@ -45,10 +47,11 @@ const fireBaseAppConfig: FirebaseAppConfig = {
   ],
   providers: [
     StatusBar,
+    AuthService,    
     SplashScreen,
-    UserService,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
-
+    UserService,
+    AuthProvider
   ]
 })
 export class AppModule {}

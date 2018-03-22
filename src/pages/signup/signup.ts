@@ -1,3 +1,4 @@
+import { UserService } from './../../providers/user.service';
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
@@ -19,6 +20,7 @@ export class SignupPage {
    signupForm: FormGroup;
 
   constructor(
+    public userService: UserService,
     public navCtrl: NavController, 
     public navParams: NavParams,
     public formBuilder : FormBuilder
@@ -36,7 +38,12 @@ export class SignupPage {
   }
 
   public onSubmit():void{
-    console.log("submit");
+    
+    this.userService.create(this.signupForm.value,).then(
+      () => {
+        console.log("usiario cadrastrado consucesso")
+      }
+    )
   }
 
 }

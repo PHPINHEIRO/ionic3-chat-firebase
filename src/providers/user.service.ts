@@ -1,8 +1,10 @@
 import { AngularFireModule } from 'angularfire2';
-import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
 import { AngularFireDatabase } from "angularfire2/database";
+import { Toast, ToastController } from 'ionic-angular';
+import { User } from '../models/user.model';
+
 
 /*
   Generated class for the UserProvider provider.
@@ -13,13 +15,16 @@ import { AngularFireDatabase } from "angularfire2/database";
 @Injectable()
 export class UserService {
 
-
-
   constructor(
-    public http: HttpClient,
     public db: AngularFireDatabase
   ) {
-    console.log('Hello UserProvider Provider');
+    
   }
+
+  create(user: User, uuid: string): Promise<void> {
+    return this.db.object(`/users/${uuid}`)
+      .set(user)
+      .catch();
+}
 
 }
