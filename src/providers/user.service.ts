@@ -1,7 +1,7 @@
-import { AngularFireModule } from 'angularfire2';
+import { AngularFireModule, AngularFire } from 'angularfire2';
 import { Injectable } from '@angular/core';
 
-import { AngularFireDatabase } from "angularfire2/database";
+
 import { Toast, ToastController } from 'ionic-angular';
 import { User } from '../models/user.model';
 
@@ -16,15 +16,14 @@ import { User } from '../models/user.model';
 export class UserService {
 
   constructor(
-    public db: AngularFireDatabase
+    public af: AngularFire
   ) {
     
   }
 
-  create(user: User, uuid: string): Promise<void> {
-    return this.db.object(`/users/${uuid}`)
-      .set(user)
-      .catch();
+  create(user: User): firebase.Promise<void> {
+    return this.af.database.list(`/users/`)
+      .push(user)
 }
 
 }
