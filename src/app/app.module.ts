@@ -12,6 +12,7 @@ import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
 import { AuthService } from '../providers/authservice.';
 import { UserService } from '../providers/user.service';
+import { SigninPageModule } from '../pages/signin/signin.module';
  
 
 
@@ -34,6 +35,7 @@ const fireBaseAppConfig: FirebaseAppConfig = {
     IonicModule.forRoot(MyApp),
     SignupPageModule, //import da page, faz pra todas.
     AngularFireModule.initializeApp(fireBaseAppConfig), // inicializa o firebase
+    SigninPageModule,
   ],
   bootstrap: [IonicApp],
   entryComponents: [

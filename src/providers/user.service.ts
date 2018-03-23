@@ -1,9 +1,11 @@
+import { Observable } from 'rxjs';
 import { AngularFireModule, AngularFire } from 'angularfire2';
 import { Injectable } from '@angular/core';
 
 
 import { Toast, ToastController } from 'ionic-angular';
 import { User } from '../models/user.model';
+import { BaseService } from './base.service';
 
 
 /*
@@ -13,17 +15,32 @@ import { User } from '../models/user.model';
   and Angular DI.
 */
 @Injectable()
-export class UserService {
+export class UserService extends BaseService{
 
   constructor(
     public af: AngularFire
   ) {
+    super()
     
   }
 
   create(user: User): firebase.Promise<void> {
-    return this.af.database.list(`/users/`)
-      .push(user)
-}
+    return this.af.database.object(`users/${user.uid}`)
+      .set(user)
+      .catch(this.handlePromiseError)
+  }
+
+  userExists(userName: string): Observable<boolean>{
+    return this.af.database.list(`users/`,{
+      query:{
+        orderByChild: 'user',
+        equalTo: userName
+      }
+    }).map((users:User[])=>{
+      return users.length > 0
+    }).catch(this.handleObservableError)
+  }
+
+
 
 }
