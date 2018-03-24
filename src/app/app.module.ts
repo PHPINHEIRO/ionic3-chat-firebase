@@ -31,10 +31,10 @@ const fireBaseAppConfig: FirebaseAppConfig = {
     HomePage
   ],
   imports: [
+    AngularFireModule.initializeApp(fireBaseAppConfig), // inicializa o firebase
     BrowserModule,
     IonicModule.forRoot(MyApp),
     SignupPageModule, //import da page, faz pra todas.
-    AngularFireModule.initializeApp(fireBaseAppConfig), // inicializa o firebase
     SigninPageModule,
   ],
   bootstrap: [IonicApp],
