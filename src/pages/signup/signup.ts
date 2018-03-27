@@ -1,4 +1,4 @@
-import { User } from './../../models/user.model';
+import { HomePage } from './../home/home';
 import { AuthService } from './../../providers/authservice.';
 import { UserService } from './../../providers/user.service';
 import { Component } from '@angular/core';
@@ -73,6 +73,7 @@ export class SignupPage {
 
                 }).present()
                 loading.dismiss()
+                this.navCtrl.setRoot(HomePage)
               }).catch((error: any) => {
                 loading.dismiss()
                 this.showAlert(error)

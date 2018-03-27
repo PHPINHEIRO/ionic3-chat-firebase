@@ -1,4 +1,4 @@
-import { FirebaseAppConfig, AngularFireModule } from 'angularfire2';
+import { FirebaseAppConfig, AngularFireModule, AuthProviders, AuthMethods } from 'angularfire2';
 
 
 import { SignupPageModule } from './../pages/signup/signup.module';
@@ -25,13 +25,19 @@ const fireBaseAppConfig: FirebaseAppConfig = {
     storageBucket: "ionic3-firebase-chat-78f7d.appspot.com",
   };
 
+
+const fireBaseAuthConfig = {
+  provider: AuthProviders.Custom,
+  method: AuthMethods.Password
+}
+
 @NgModule({
   declarations: [
     MyApp,
     HomePage
   ],
   imports: [
-    AngularFireModule.initializeApp(fireBaseAppConfig), // inicializa o firebase
+    AngularFireModule.initializeApp(fireBaseAppConfig,fireBaseAuthConfig), // inicializa o firebase
     BrowserModule,
     IonicModule.forRoot(MyApp),
     SignupPageModule, //import da page, faz pra todas.

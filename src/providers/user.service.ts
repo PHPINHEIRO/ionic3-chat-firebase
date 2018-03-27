@@ -1,9 +1,6 @@
 import { Observable } from 'rxjs';
-import { AngularFireModule, AngularFire } from 'angularfire2';
-import { Injectable } from '@angular/core';
-
-
-import { Toast, ToastController } from 'ionic-angular';
+import { AngularFire } from 'angularfire2';
+import { Injectable } from '@angular/core'; 
 import { User } from '../models/user.model';
 import { BaseService } from './base.service';
 
