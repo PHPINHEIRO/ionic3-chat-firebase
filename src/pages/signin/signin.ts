@@ -43,7 +43,7 @@ export class SigninPage {
     let loading: Loading = this.showLoading()
 
     this.authService.signinWithEmail(this.signinForm.value)
-      .then((isLogged) => {
+      .then((isLogged: boolean) => {
         if (isLogged) {
           this.navCtrl.setRoot(HomePage)
           loading.dismiss()
@@ -62,7 +62,7 @@ export class SigninPage {
 
   private showLoading(): Loading {
     let loading: Loading = this.loadingCtrl.create({
-      content: 'Criando conta, por favor aguarde'
+      content: 'Verificando  conta,por favor aguarde'
     });
 
     loading.present()

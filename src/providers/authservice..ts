@@ -36,13 +36,18 @@ export class AuthService extends BaseService{
     return this.auth.logout()
   }
 
+
   get authenticated(): Promise<boolean> {
     return new Promise((resolve, reject) => {
-      this.firebaseAuth.authState
-        .first()
-        .subscribe((authState: firebase.User) => {
-           (authState) ? resolve(true) : reject(false);
-        });
+      this.auth
+          .subscribe((authState:FirebaseAuthState) => {
+            (authState) ? resolve(true) : reject(false);
+          })
+      // this.firebaseAuth.authState
+      //   .first()
+      //   .subscribe((authState: firebase.User) => {
+      //      (authState) ? resolve(true) : reject(false);
+      //   });
       });
   }
 

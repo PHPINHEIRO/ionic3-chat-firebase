@@ -1,3 +1,4 @@
+import { CustomLoggedHeaderComponent } from './../components/custom-logged-header/custom-logged-header';
 import { FirebaseAppConfig, AngularFireModule, AuthProviders, AuthMethods } from 'angularfire2';
 
 
@@ -34,7 +35,9 @@ const fireBaseAuthConfig = {
 @NgModule({
   declarations: [
     MyApp,
-    HomePage
+    HomePage,
+    CustomLoggedHeaderComponent
+    
   ],
   imports: [
     AngularFireModule.initializeApp(fireBaseAppConfig,fireBaseAuthConfig), // inicializa o firebase
@@ -46,7 +49,8 @@ const fireBaseAuthConfig = {
   bootstrap: [IonicApp],
   entryComponents: [
     MyApp,
-    HomePage
+    HomePage,
+    CustomLoggedHeaderComponent
   ],
   providers: [
     StatusBar,
