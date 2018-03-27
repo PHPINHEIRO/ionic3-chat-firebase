@@ -3,13 +3,28 @@
   <custom-logged-header [title]="view"></custom-logged-header>
   
   <ion-toolbar >
-    <ion-segment>
-      <ion-segment-button>Conversas</ion-segment-button> 
-      <ion-segment-button>Amigos</ion-segment-button>      
+    <ion-segment [(ngModel)] = "view">
+      <ion-segment-button value="Chats">Conversas</ion-segment-button> 
+      <ion-segment-button value="Users">Amigos</ion-segment-button>      
     </ion-segment>
   </ion-toolbar>
 </ion-header>
 
 <ion-content padding>
+
+  <div [ngSwitch]="view">
+
+   <ion-list *ngSwitchCase="'Chats'" >
+     <ion-item>chats</ion-item>
+   </ion-list>
+
+   <ion-list *ngSwitchCase="'Users'" >
+      <button ion-item *ngFor="let user of users | async" (click)="onChatCreate(user)">{{user.name}}</button >
+    </ion-list>
+
+  </div>
+
+  
+
   <button ion-button block (click)="onSignup()">Sign up</button>
 </ion-content>

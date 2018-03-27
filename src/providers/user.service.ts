@@ -1,5 +1,5 @@
 import { Observable } from 'rxjs';
-import { AngularFire } from 'angularfire2';
+import { AngularFire, FirebaseListObservable } from 'angularfire2';
 import { Injectable } from '@angular/core'; 
 import { User } from '../models/user.model';
 import { BaseService } from './base.service';
@@ -11,18 +11,21 @@ import { BaseService } from './base.service';
   See https://angular.io/guide/dependency-injection for more info on providers
   and Angular DI.
 */
-@Injectable()
+@Injectable() 
 export class UserService extends BaseService{
+
+  users: FirebaseListObservable<User[]>
 
   constructor(
     public af: AngularFire
   ) {
-    super()
+    super();
+    this.users = this.af.database.list(`/users`)
     
   }
 
-  create(user: User): firebase.Promise<void> {
-    return this.af.database.object(`users/${user.uid}`)
+  create(user: User,uuid: string): firebase.Promise<void> {
+    return this.af.database.object(`users/${uuid}`)
       .set(user)
       .catch(this.handlePromiseError)
   }

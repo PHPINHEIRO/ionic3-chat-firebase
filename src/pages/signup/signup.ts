@@ -49,7 +49,7 @@ export class SignupPage {
     let loading: Loading = this.showLoading();
     let formUser = this.signupForm.value;
     let userName: string = formUser.user;
-    console.log(userName)
+    console.log(userName) 
 
     this.userService.userExists(userName)
       .first()
@@ -63,8 +63,8 @@ export class SignupPage {
           }).then((authState: FirebaseAuthState) => {
 
             delete formUser.password
-            formUser.uid = authState.auth.uid
-            this.userService.create(this.signupForm.value).then(
+            let uuid: string = authState.auth.uid
+            this.userService.create(this.signupForm.value,uuid).then(
               () => {
 
                 this.toast.create({
