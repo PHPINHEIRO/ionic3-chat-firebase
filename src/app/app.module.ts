@@ -50,7 +50,6 @@ const fireBaseAuthConfig = {
   entryComponents: [
     MyApp,
     HomePage,
-    CustomLoggedHeaderComponent
   ],
   providers: [
     StatusBar,
