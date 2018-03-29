@@ -1,6 +1,4 @@
-import { ChatPageModule } from './../pages/chat/chat.module';
 import { FirebaseAppConfig, AngularFireModule, AuthProviders, AuthMethods } from 'angularfire2';
-
 
 import { SignupPageModule } from './../pages/signup/signup.module';
 import { BrowserModule } from '@angular/platform-browser';
@@ -13,8 +11,8 @@ import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
 import { AuthService } from '../providers/authservice.';
 import { UserService } from '../providers/user.service';
+import { ChatPage } from '../pages/chat/chat';
 import { SigninPageModule } from '../pages/signin/signin.module';
-import { ComponentsModule } from '../components/components.module';
 import { CustomLoggedHeaderComponent } from '../components/custom-logged-header/custom-logged-header';
  
 
@@ -37,26 +35,22 @@ const fireBaseAuthConfig = {
 @NgModule({
   declarations: [
     MyApp,
-    HomePage,  
+    HomePage,
+    ChatPage,
+    CustomLoggedHeaderComponent  
   ],
   imports: [
     AngularFireModule.initializeApp(fireBaseAppConfig,fireBaseAuthConfig), // inicializa o firebase
     BrowserModule,
-    IonicModule.forRoot(MyApp),
+    IonicModule.forRoot(MyApp),    
     SignupPageModule, //import da page, faz pra todas.
-    SigninPageModule,
-    ChatPageModule,
-    ComponentsModule
-    
-  ],
-  exports: [
-    CustomLoggedHeaderComponent
-  ],
+    SigninPageModule
+  ],  
   bootstrap: [IonicApp],
   entryComponents: [
     MyApp,
     HomePage,
-    
+    ChatPage    
   ],
   providers: [
     StatusBar,
