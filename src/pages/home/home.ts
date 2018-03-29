@@ -1,3 +1,4 @@
+import { ChatPage } from './../chat/chat';
 import { UserService } from './../../providers/user.service';
 import { User } from './../../models/user.model';
 import { FirebaseListObservable } from 'angularfire2';
@@ -33,6 +34,10 @@ export class HomePage {
 
   onChatCreate(user: User): void{
     console.log('usuario clicado: ',user)
+
+    this.navCtrl.push(ChatPage,{
+      recipientUser: user
+    })
   }
    
   public onSignup():void{

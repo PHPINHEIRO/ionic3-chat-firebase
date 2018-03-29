@@ -1,4 +1,4 @@
-import { CustomLoggedHeaderComponent } from './../components/custom-logged-header/custom-logged-header';
+import { ChatPageModule } from './../pages/chat/chat.module';
 import { FirebaseAppConfig, AngularFireModule, AuthProviders, AuthMethods } from 'angularfire2';
 
 
@@ -14,6 +14,8 @@ import { HomePage } from '../pages/home/home';
 import { AuthService } from '../providers/authservice.';
 import { UserService } from '../providers/user.service';
 import { SigninPageModule } from '../pages/signin/signin.module';
+import { ComponentsModule } from '../components/components.module';
+import { CustomLoggedHeaderComponent } from '../components/custom-logged-header/custom-logged-header';
  
 
 
@@ -35,9 +37,7 @@ const fireBaseAuthConfig = {
 @NgModule({
   declarations: [
     MyApp,
-    HomePage,
-    CustomLoggedHeaderComponent
-    
+    HomePage,  
   ],
   imports: [
     AngularFireModule.initializeApp(fireBaseAppConfig,fireBaseAuthConfig), // inicializa o firebase
@@ -45,11 +45,18 @@ const fireBaseAuthConfig = {
     IonicModule.forRoot(MyApp),
     SignupPageModule, //import da page, faz pra todas.
     SigninPageModule,
+    ChatPageModule,
+    ComponentsModule
+    
+  ],
+  exports: [
+    CustomLoggedHeaderComponent
   ],
   bootstrap: [IonicApp],
   entryComponents: [
     MyApp,
     HomePage,
+    
   ],
   providers: [
     StatusBar,
